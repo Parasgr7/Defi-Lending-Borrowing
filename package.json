@@ -9,9 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chainlink/contracts": "^0.4.1",
+    "@openzeppelin/contracts": "^4.7.0",
+    "@openzeppelin/test-helpers": "^0.5.15",
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "babel-polyfill": "6.26.0",
+    "babel-register": "6.26.0",
+    "bootstrap": "4.3.1",
+    "chai": "4.2.0",
+    "chai-as-promised": "7.1.1",
+    "chai-bignumber": "3.0.0",
+    "dotenv": "^6.2.0",
+    "eth-gas-reporter": "^0.2.25",
     "next": "12.2.5",
+    "next-transpile-modules": "^9.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "truffle": "5.1.39",
+    "truffle-contract-size": "^2.0.1",
+    "web3": "^1.2.11"
   },
   "devDependencies": {
     "eslint": "8.22.0",
