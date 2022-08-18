@@ -104,6 +104,14 @@ contract LendingAndBorrowing is Ownable {
         return borrowers;
     }
 
+    function getTokensForLendingArray() public view returns (Token[] memory) {
+        return tokensForLending;
+    }
+
+    function getTokensForBorrowingArray() public view returns (Token[] memory) {
+        return tokensForBorrowing;
+    }
+
     function lend(address tokenAddress, uint256 amount) external payable {
         require(tokenIsAllowed(tokenAddress, tokensForLending));
         require(amount > 0);
@@ -389,14 +397,21 @@ contract LendingAndBorrowing is Ownable {
        }
 
        function getAmountInDollars(uint256 amount, address tokenAddress) public view returns (uint256){
-           //Calculating oneTokenEqualsHowManyDollars
-           AggregatorV3Interface priceFeed = AggregatorV3Interface(tokenToPriceFeed[tokenAddress]);
+          (uint256 dollarPerToken,uint256 decimals) = oneTokenEqualsHowManyDollars(tokenAddress);
+          uint256 totalAmountInDollars = (amount * dollarPerToken) / (10**decimals);
+          return totalAmountInDollars;
+        }
 
-           (, int256 price, , , ) = priceFeed.latestRoundData();
+      function oneTokenEqualsHowManyDollars(address tokenAddress) public view returns (uint256, uint256){
+            address tokenToUsd = tokenToPriceFeed[tokenAddress];
+            AggregatorV3Interface priceFeed = AggregatorV3Interface(tokenToUsd);
 
-           return (amount * uint256(price)) / (10**priceFeed.decimals());
-       }
+            (, int256 price, , , ) = priceFeed.latestRoundData();
 
+            uint256 decimals = priceFeed.decimals();
+
+            return (uint256(price), decimals);
+        }
 
        function updateUserTokensBorrowedOrLent(
          address tokenAddress,

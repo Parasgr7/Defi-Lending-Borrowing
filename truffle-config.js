@@ -13,6 +13,7 @@ module.exports = {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*", // Match any network id
+      gasPrice: 25000000000
     },
     ropsten: {
       provider: function(){
@@ -21,7 +22,7 @@ module.exports = {
           `https://ropsten.infura.io/v3/${INFURA_API_KEY}`
         )
       },
-      gas_price: 25000000,
+      gas_price: 25000000000,
       network_id: 3
     }
   },
@@ -31,11 +32,11 @@ module.exports = {
     solc: {
       version: "^0.8.6",
       settings: {
-        evmVersion: 'byzantium'
-      },
-      optimizer: {
-        enabled: true,
-        runs: 1
+        evmVersion: 'byzantium',
+        optimizer: {
+          enabled: true,
+          runs: 1
+        }
       },
       mocha: {
         reporter: 'eth-gas-reporter',
