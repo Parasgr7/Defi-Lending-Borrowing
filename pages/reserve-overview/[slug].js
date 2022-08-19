@@ -22,40 +22,6 @@ export default function Details({ token }) {
   const { yourSupplies } = useYourSupplies()
   const {yourBorrows} = useYourBorrows()
 
-  // const router = useRouter();
-
-  // const query = router.query;
-
-  // // console.log(query)
-
-
-  // const image = JSON.parse(query.image);
-
-  // const availableAmountInContract = JSON.parse(query.availableAmountInContract);
-  // const totalBorrowedInContract = JSON.parse(query.totalBorrowedInContract);
-  // const totalSuppliedInContract = JSON.parse(query.totalSuppliedInContract);
-  // const userTokenBorrowedAmount = JSON.parse(query.userTokenBorrowedAmount);
-  // const userTokenLentAmount = JSON.parse(query.userTokenLentAmount);
-  // const walletBalance = JSON.parse(query.walletBalance);
-
-  // const token = {
-  //   ...query,
-  //   image,
-  //   availableAmountInContract,
-  //   totalBorrowedInContract,
-  //   totalSuppliedInContract,
-  //   userTokenBorrowedAmount,
-  //   userTokenLentAmount,
-  //   walletBalance,
-  // };
-
-  // const collateral =  token.userTotalSupplyBalance;
-
-  // const tokenAvailableInContract = parseFloat(token.availableAmountInContract.amount)
-  // const tokenAvailableInContractInDollars = parseFloat(token.availableAmountInContract.inDollars)
-
-  // const maxToBorrowInDollars = parseFloat(collateral) * parseFloat(token.LTV)
-  // const maxToBorrow = maxToBorrowInDollars / parseFloat(token.oneTokenToDollar)
   let actualAvailable;
   let actualAvailableInDollars;
 
@@ -215,35 +181,34 @@ export default function Details({ token }) {
 }
 
 
-// export async function getServerSideProps(context) {
-//
-//
-//   const query = context.query;
-//
-//   const image = JSON.parse(query.image);
-//
-//   const availableAmountInContract = JSON.parse(query.availableAmountInContract);
-//   const totalBorrowedInContract = JSON.parse(query.totalBorrowedInContract);
-//   const totalSuppliedInContract = JSON.parse(query.totalSuppliedInContract);
-//   const userTokenBorrowedAmount = JSON.parse(query.userTokenBorrowedAmount);
-//   const userTokenLentAmount = JSON.parse(query.userTokenLentAmount);
-//   const walletBalance = JSON.parse(query.walletBalance);
-//
-//   const token = {
-//     ...query,
-//     image,
-//     availableAmountInContract,
-//     totalBorrowedInContract,
-//     totalSuppliedInContract,
-//     userTokenBorrowedAmount,
-//     userTokenLentAmount,
-//     walletBalance,
-//   };
-//
-//
-//   return {
-//     props: {
-//       token
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+
+  const query = context.query;
+
+  const image = JSON.parse(query.image);
+
+  const availableAmountInContract = JSON.parse(query.availableAmountInContract);
+  const totalBorrowedInContract = JSON.parse(query.totalBorrowedInContract);
+  const totalSuppliedInContract = JSON.parse(query.totalSuppliedInContract);
+  const userTokenBorrowedAmount = JSON.parse(query.userTokenBorrowedAmount);
+  const userTokenLentAmount = JSON.parse(query.userTokenLentAmount);
+  const walletBalance = JSON.parse(query.walletBalance);
+
+  const token = {
+    ...query,
+    image,
+    availableAmountInContract,
+    totalBorrowedInContract,
+    totalSuppliedInContract,
+    userTokenBorrowedAmount,
+    userTokenLentAmount,
+    walletBalance,
+  };
+
+
+  return {
+    props: {
+      token
+    },
+  };
+}
