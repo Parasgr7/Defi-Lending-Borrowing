@@ -171,7 +171,7 @@ export default function Details({ token }) {
             </div>
           </div>
 
-          {/* <Footer /> */}
+         <Footer /> 
         </div>
       </div>
 

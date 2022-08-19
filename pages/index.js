@@ -278,8 +278,10 @@ export default function Home() {
 
 
   return (
-    <div className="">
-      {/* className="flex justify-center text-center sm:block sm:p-0" */}
+    <div>
+      <Head>
+        <title>DeFi Lending Borrowing</title>
+      </Head>
       {!isLoading ? (
         account.data ? (
           <>
@@ -579,7 +581,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* <Footer /> */}
+                     <Footer />
                   </div>
                 </div>
               </div>
