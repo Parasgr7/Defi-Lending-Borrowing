@@ -19,20 +19,6 @@ export default function Navbar({accountAddress}) {
               >
                 Dashboard
               </a>
-              <a
-                className="ml-3 text-white text-sm hidden lg:inline-block font-semibold"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                Markets
-              </a>
-              <a
-                className="ml-3 text-white text-sm hidden lg:inline-block font-semibold"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                Stake
-              </a>
             </div>
             <div className="px-4 py-1 text-white border bg-gray-800 border-gray-400 rounded-md">
               {accountAddress.slice(0,7)}...{accountAddress.slice(accountAddress.length-10)}

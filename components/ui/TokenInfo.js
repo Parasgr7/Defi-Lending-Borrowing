@@ -206,7 +206,7 @@ export default function TokenInfo({
               </p>
               <p className="font-medium text-sm sm:text-base">
                 {" "}
-                {todp(actualAvailable, 3)} {token.name}
+                {todp(actualAvailable, 2)} {token.name}
               </p>
             </div>
             <div className="flex w-full pt-8">

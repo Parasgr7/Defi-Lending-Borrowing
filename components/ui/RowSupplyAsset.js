@@ -4,8 +4,6 @@ import Link from "next/link";
 import { todp } from "../../utils/todp";
 
 export default function RowSupplyAsset({ token, Supply, Details }) {
-
-
   return (
     <>
       <tr>
@@ -27,10 +25,10 @@ export default function RowSupplyAsset({ token, Supply, Details }) {
           <div className="text-sm text-gray-500">${todp(token.walletBalance.inDollars, 2)}</div>
         </td>
         <td className="border-t-0 px-4 border  align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-          <div className="text-base">__</div>
+          <div className="text-base">N/A</div>
         </td>
         <td className="border-t-0 px-4 border  align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-          <div className="text-base">Yes</div>
+          <div className="text-green-700 text-lg font-large"> &#10004; </div>
         </td>
         <td className="border-t-0 px-4 border align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
          <Supply />

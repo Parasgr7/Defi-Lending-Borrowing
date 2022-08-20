@@ -311,7 +311,6 @@ export default function Home() {
 
                                 <div className="">
                                     {network.data === "Kovan Test Network"
-
                                     ?<div className="text-2xl sm:text-2xl text- ml-2 text-white font-bold">Ethereum Kovan Market</div>
                                     :  (<><div className="bg-red-500 p-2 text-sm rounded-md text-white">Connected to the Wrong network</div>
                                     <div className="text-2xl sm:text-2xl text- ml-2 text-white font-bold">Switch to Kovan</div></>)
