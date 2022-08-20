@@ -13,6 +13,7 @@ import { useWeb3 } from "../components/providers/web3";
 import { useEffect, useState } from "react";
 import eth from "../assets/eth.png";
 import ERC20 from "../abis/ADE.json";
+import LARToken from "../abis/LARToken.json";
 import { trackPromise } from "react-promise-tracker";
 import { todp } from "../utils/todp";
 import Navbar from "../components/ui/Navbar";
@@ -38,8 +39,6 @@ export default function Home() {
   const { tokensForBorrow } = useBorrowAssets();
   const { yourSupplies } = useYourSupplies();
   const { yourBorrows } = useYourBorrows();
-
-  const NETWORK_ID = 1337;
 
   const [selectedTokenToSupply, setSelectedTokenToSupply] = useState(null);
   const [selectedTokenToBorrow, setSelectedTokenToBorrow] = useState(null);
@@ -82,11 +81,13 @@ export default function Home() {
   };
 
   const supplyToken = async (token, value) => {
+    let NETWORK_ID = await web3.eth.net.getId();
     const tokenInst = new web3.eth.Contract(ERC20.abi, token.tokenAddress);
     const larToken = new web3.eth.Contract(
       ERC20.abi,
-      map[NETWORK_ID]["LARToken"][0]
+      LARToken.networks[NETWORK_ID].address
     );
+    console.log(larToken)
 
     try {
       await trackPromise(
@@ -240,9 +241,10 @@ export default function Home() {
   };
 
   const addLAR = async (token) => {
+    let NETWORK_ID = await web3.eth.net.getId();
     const larToken = new web3.eth.Contract(
       ERC20.abi,
-      map[NETWORK_ID]["LARToken"][0]
+      LARToken.networks[NETWORK_ID].address
     );
 
     const tokenAddress = larToken.options.address;

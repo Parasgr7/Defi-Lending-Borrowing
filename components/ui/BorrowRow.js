@@ -3,39 +3,6 @@ import matic from "../../assets/matic.png"
 import { todp } from "../../utils/todp";
 
 export default function BorrowRow({ token, Repay, Borrow }) {
-
-  // name
-  // image
-  // tokenAddress
-  // walletBalance: {
-  //   amount: fromWei(walletBalance),
-  //   inDollars: fromWei(walletBalanceInDollars),
-  // },
-  // totalSuppliedInContract: {
-  //   amount: fromWei(totalSuppliedInContract),
-  //   inDollars: fromWei(totalSuppliedInContractInDollars),
-  // },
-  // totalBorrowedInContract: {
-  //   amount: fromWei(totalBorrowedInContract),
-  //   inDollars: fromWei(totalBorrowedInContractInDollars),
-  // },
-  // availableAmountInContract: {
-  //   amount: fromWei(availableAmountInContract),
-  //   inDollars: fromWei(availableAmountInContractInDollars),
-  // },
-  // userTokenBorrowedAmount: {
-  //   amount: fromWei(userTokenBorrowedAmount),
-  //   inDollars: fromWei(userTokenBorrowedAmountInDollars),
-  // },
-  // userTokenLentAmount: {
-  //   amount: fromWei(userTokenLentAmount),
-  //   inDollars: fromWei(userTokenLentAmountInDollars),
-  // },
-  // LTV: web3.utils.fromWei(currentToken.LTV),
-  // borrowAPYRate: web3.utils.fromWei(currentToken.stableRate),
-  //   utilizationRate: utilizationRate,
-
-
   return (
     <>
       <tr>

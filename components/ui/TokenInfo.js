@@ -3,7 +3,7 @@ import { useState } from "react";
 import ModalBorrow from "./ModalBorrow";
 import ModalSupply from "./ModalSupply";
 import ERC20 from "../../abis/ADE.json";
-// import map from "@public/build/deployments/map.json";
+import LARToken from "../../abis/LARToken.json";
 import { trackPromise } from "react-promise-tracker";
 
 export default function TokenInfo({
@@ -26,8 +26,6 @@ export default function TokenInfo({
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqZs8PLHRLaGd4QfIvOYmCg30svx5dHp0y6A&usqp=CAU",
   };
 
-  const NETWORK_ID = 1337;
-
   const [selectedTokenToSupply, setSelectedTokenToSupply] = useState(null);
   const [selectedTokenToBorrow, setSelectedTokenToBorrow] = useState(null);
 
@@ -47,22 +45,23 @@ export default function TokenInfo({
   };
 
   const supplyToken = async (token, value) => {
+    let NETWORK_ID = await web3.eth.net.getId();
     const tokenInst = new web3.eth.Contract(ERC20.abi, token.tokenAddress);
     const larToken = new web3.eth.Contract(
       ERC20.abi,
-      map[NETWORK_ID]["LARToken"][0]
+      LARToken.networks[NETWORK_ID].address
     );
 
     try {
       await trackPromise(
         tokenInst.methods
-          .approve(contract.options.address, web3.utils.toWei(value))
+          .approve(contract.options.address, web3.utils.toWei(value.toString()))
           .send({ from: account.data })
       );
 
       const supplyResult = await trackPromise(
         contract.methods
-          .lend(tokenInst.options.address, web3.utils.toWei(value))
+          .lend(tokenInst.options.address, web3.utils.toWei(value.toString()))
           .send({ from: account.data })
       );
 
@@ -72,7 +71,7 @@ export default function TokenInfo({
 
       await trackPromise(
         larToken.methods
-          .approve(contract.options.address, web3.utils.toWei(larTokenBalance))
+          .approve(contract.options.address, web3.utils.toWei(larTokenBalance.toString()))
           .send({ from: account.data })
       );
 
@@ -89,7 +88,7 @@ export default function TokenInfo({
     try {
       const borrowingResult = await trackPromise(
         contract.methods
-          .borrow(web3.utils.toWei(value), token.tokenAddress)
+          .borrow(web3.utils.toWei(value.toString()), token.tokenAddress)
           .send({ from: account.data })
       );
       setBorrowingResult(borrowingResult);
@@ -130,9 +129,10 @@ export default function TokenInfo({
   };
 
   const addLAR = async (token) => {
+    let NETWORK_ID = await web3.eth.net.getId();
     const larToken = new web3.eth.Contract(
       ERC20.abi,
-      map[NETWORK_ID]["LARToken"][0]
+      LARToken.networks[NETWORK_ID].address
     );
 
     const tokenAddress = larToken.options.address;

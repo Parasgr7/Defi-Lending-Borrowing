@@ -4,7 +4,7 @@ import { todp } from "../../utils/todp";
 import { useState } from "react";
 import { LoadingSpinerComponent } from "../../utils/Spinner";
 import { convertToDollar } from "../../utils/helpfulScripts";
-import BorderLayout from "./BorderLayout"; 
+import BorderLayout from "./BorderLayout";
 import { usePromiseTracker } from "react-promise-tracker";
 
 export default function ModalBorrow({
@@ -236,7 +236,7 @@ export default function ModalBorrow({
           {/* <!-- Modal footer --> */}
           <div className="flex w-full items-center p-6 space-x-2 rounded-b border-gray-200 dark:border-gray-600">
             <button
-              disabled={!!!value}
+              // disabled={!!!value}
               onClick={() => onBorrow(token, value)}
               data-modal-toggle="small-modal"
               type="button"

@@ -36,7 +36,7 @@ export default function ReserveStatus({ token }) {
               </div>
             </div>
             <div className="bg-gray-200 my-3 px-2 rounded-md">
-              <div className="text-green-900">
+              <div className="text-green-700 font-bold">
                ✔️ Can be collateral
                </div>
               <div className="mt-2">
