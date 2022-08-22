@@ -26,32 +26,19 @@ export const handler = (web3, contract) => () => {
 
       if (Number(noOfTokensLent) > 0) {
         for (let i = 0; i < Number(noOfTokensLent); i++) {
-          const currentTokenAddress = await contract.methods
-            .tokensLent(i, account)
-            .call();
+          const currentTokenAddress = await contract.methods.tokensLent(i, account).call();
 
           if (tokenAddressTracker.includes(currentTokenAddress)) {
             continue;
           }
 
-          if (
-            currentTokenAddress.toString() !==
-            "0x0000000000000000000000000000000000000000"
-          ) {
-            const currentToken = await contract.methods
-              .getTokenFrom(currentTokenAddress)
-              .call();
+          if (currentTokenAddress.toString() !== "0x0000000000000000000000000000000000000000") {
+            const currentToken = await contract.methods.getTokenFrom(currentTokenAddress).call();
             console.log("Hi",currentTokenAddress);
 
-            const normalized = await normalizeToken(
-              web3,
-              contract,
-              currentToken
-            );
-
+            const normalized = await normalizeToken(web3,contract,currentToken);
 
             yourBalance += parseFloat(normalized.userTokenLentAmount.inDollars);
-
 
             if (Number(normalized.userTokenLentAmount.inDollars) > 0.0000000000001) {
 

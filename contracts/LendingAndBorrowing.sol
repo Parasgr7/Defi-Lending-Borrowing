@@ -8,9 +8,11 @@ contract LendingAndBorrowing is Ownable {
     address[] public lenders;
     address[] public borrowers;
 
+    // {tokenAddres: {userAddr : amount}}
     mapping(address => mapping(address => uint256)) public tokensLentAmount;
     mapping(address => mapping(address => uint256)) public tokensBorrowedAmount;
 
+    // {noOfTokensLent: {userAddr: tokenAddres}}
     mapping(uint256 => mapping(address => address)) public tokensLent;
     mapping(uint256 => mapping(address => address)) public tokensBorrowed;
 
@@ -54,6 +56,7 @@ contract LendingAndBorrowing is Ownable {
         string name;
     }
 
+    //Array of Struct Token [Dai, Weth, Fau, Link]
     Token[] public tokensForLending;
     Token[] public tokensForBorrowing;
 
@@ -347,31 +350,45 @@ contract LendingAndBorrowing is Ownable {
        }
 
        function getUserTotalAmountAvailableForBorrowInDollars(address user) public view returns (uint256){
-           uint256 userTotalCollateralToBorrow = 0;
-           uint256 userTotalCollateralAlreadyBorrowed = 0;
+          // uint256 totalAvailableToBorrow = 0;
 
-           for (uint256 i = 0; i < lenders.length; i++){
-               if (lenders[i] == user) {
-                   for (uint256 j = 0; j < tokensForLending.length; j++) {
-                       userTotalCollateralToBorrow += ( getAmountInDollars(
-                         tokensLentAmount[tokensForLending[j].tokenAddress][user],
-                         tokensForLending[j].tokenAddress)
-                         * tokensForLending[j].LTV ) / 10**18;
-                   }
-               }
-           }
-           for (uint256 i = 0; i < borrowers.length; i++){
-               if (borrowers[i] == user) {
-                   for (uint256 j = 0; j < tokensForBorrowing.length; j++){
-                       userTotalCollateralAlreadyBorrowed += getAmountInDollars(
-                         tokensBorrowedAmount[tokensForBorrowing[j].tokenAddress][user],
-                         tokensForBorrowing[j].tokenAddress);
-                   }
-               }
-           }
+          uint256 userTotalCollateralToBorrow = 0;
+          uint256 userTotalCollateralAlreadyBorrowed = 0;
 
-           return userTotalCollateralToBorrow - userTotalCollateralAlreadyBorrowed;
-       }
+          for (uint256 i = 0; i < lenders.length; i++) {
+              address currentLender = lenders[i];
+              if (currentLender == user) {
+                  for (uint256 j = 0; j < tokensForLending.length; j++) {
+                      Token memory currentTokenForLending = tokensForLending[j];
+                      uint256 currentTokenLentAmount = tokensLentAmount[currentTokenForLending.tokenAddress][user];
+                      uint256 currentTokenLentAmountInDollar = getAmountInDollars(
+                          currentTokenLentAmount,
+                          currentTokenForLending.tokenAddress
+                      );
+                      uint256 availableInDollar = (currentTokenLentAmountInDollar * currentTokenForLending.LTV) / 10**18;
+                      userTotalCollateralToBorrow += availableInDollar;
+                  }
+              }
+          }
+
+          for (uint256 i = 0; i < borrowers.length; i++) {
+              address currentBorrower = borrowers[i];
+              if (currentBorrower == user) {
+                  for (uint256 j = 0; j < tokensForBorrowing.length; j++) {
+                      Token memory currentTokenForBorrowing = tokensForBorrowing[j];
+                      uint256 currentTokenBorrowedAmount = tokensBorrowedAmount[currentTokenForBorrowing.tokenAddress][user];
+                      uint256 currentTokenBorrowedAmountInDollar = getAmountInDollars(
+                              (currentTokenBorrowedAmount),
+                              currentTokenForBorrowing.tokenAddress
+                          );
+
+                      userTotalCollateralAlreadyBorrowed += currentTokenBorrowedAmountInDollar;
+                  }
+              }
+          }
+
+          return userTotalCollateralToBorrow - userTotalCollateralAlreadyBorrowed;
+      }
 
 
        function tokenIsAllowed(address tokenAddress, Token[] memory tokenArray) private pure returns (bool){

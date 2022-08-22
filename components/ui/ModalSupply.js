@@ -26,7 +26,7 @@ export default function ModalSupply({
         <div className="flex justify-between items-center rounded-t">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             {supplyResult?.transactionHash
-              ? `Sucessful`
+              ? `Sucessfull`
               : `Supply ${token?.name}`}
           </h3>
           <button

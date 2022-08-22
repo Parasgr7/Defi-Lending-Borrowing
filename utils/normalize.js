@@ -25,37 +25,21 @@ export const normalizeToken = async (web3, contract, currentToken) => {
  const accounts = await web3.eth.getAccounts();
  const account = accounts[0];
 
+
   const tokenInst = new web3.eth.Contract(ade.abi, currentToken.tokenAddress);
 
   const decimals = await tokenInst.methods.decimals().call()
 
-  const walletBalance = await tokenInst.methods
-    .balanceOf(account)
-    .call();
+  const walletBalance = await tokenInst.methods.balanceOf(account).call();
 
 
-  const totalSuppliedInContract = await contract.methods
-    .getTotalTokenSupplied(currentToken.tokenAddress)
-    .call();
+  const totalSuppliedInContract = await contract.methods.getTotalTokenSupplied(currentToken.tokenAddress).call();
 
-  const totalBorrowedInContract = await contract.methods
-    .getTotalTokenBorrowed(currentToken.tokenAddress)
-    .call();
-  const utilizationRate =
-    (Number(totalBorrowedInContract) * 100) / Number(totalSuppliedInContract);
+  const totalBorrowedInContract = await contract.methods.getTotalTokenBorrowed(currentToken.tokenAddress).call();
+  const utilizationRate = (Number(totalBorrowedInContract) * 100) / Number(totalSuppliedInContract);
 
-  const userTokenBorrowedAmount = await contract.methods
-    .tokensBorrowedAmount(
-      currentToken.tokenAddress,
-      account
-    )
-    .call();
-  const userTokenLentAmount = await contract.methods
-    .tokensLentAmount(
-      currentToken.tokenAddress,
-      account
-    )
-    .call();
+  const userTokenBorrowedAmount = await contract.methods.tokensBorrowedAmount(currentToken.tokenAddress,account).call();
+  const userTokenLentAmount = await contract.methods.tokensLentAmount(currentToken.tokenAddress,account).call();
 
 
   const userTotalAmountAvailableToWithdrawInDollars = await contract.methods.getTokenAvailableToWithdraw(account).call();
@@ -78,15 +62,11 @@ export const normalizeToken = async (web3, contract, currentToken) => {
     .call();
 
 
-  const userTokenLentAmountInDollars = await contract.methods
-    .getAmountInDollars(userTokenLentAmount, currentToken.tokenAddress)
-  .call();
+  const userTokenLentAmountInDollars = await contract.methods.getAmountInDollars(userTokenLentAmount, currentToken.tokenAddress).call();
 
   const availableAmountInContract = (toBN(totalSuppliedInContract).sub(toBN(totalBorrowedInContract))).toString()
 
- const availableAmountInContractInDollars = await contract.methods
- .getAmountInDollars(availableAmountInContract, currentToken.tokenAddress)
-    .call();
+  const availableAmountInContractInDollars = await contract.methods.getAmountInDollars(availableAmountInContract, currentToken.tokenAddress).call();
 
 
 

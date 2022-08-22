@@ -80,6 +80,7 @@ export default function Home() {
     setTransactionHash(null);
   };
 
+
   const supplyToken = async (token, value) => {
     let NETWORK_ID = await web3.eth.net.getId();
     const tokenInst = new web3.eth.Contract(ERC20.abi, token.tokenAddress);
