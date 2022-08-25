@@ -22,38 +22,22 @@ export const handler = (web3, contract) => () => {
       let yourBalance = 0;
       const tokenAddressTracker = [];
 
-      const noOfTokensBorrowed = await contract.methods
-        .noOfTokensBorrowed()
-        .call();
+      const noOfTokensBorrowed = await contract.methods.noOfTokensBorrowed().call();
 
       if (Number(noOfTokensBorrowed) > 0) {
         for (let i = Number(noOfTokensBorrowed) - 1; i >= 0; i--) {
-          const currentTokenAddress = await contract.methods
-            .tokensBorrowed(i, account)
-            .call();
-
+          const currentTokenAddress = await contract.methods.tokensBorrowed(i, account).call();
 
           if (tokenAddressTracker.includes(currentTokenAddress)) {
             continue;
           }
 
-          if (
-            currentTokenAddress.toString() !==
-            "0x0000000000000000000000000000000000000000"
-          ) {
-            const currentToken = await contract.methods
-              .getTokenFrom(currentTokenAddress)
-              .call();
+          if (currentTokenAddress.toString() !== "0x0000000000000000000000000000000000000000") {
+            const currentToken = await contract.methods.getTokenFrom(currentTokenAddress).call();
 
-            const normalized = await normalizeToken(
-              web3,
-              contract,
-              currentToken
-            );
+            const normalized = await normalizeToken(web3, contract, currentToken);
 
-            yourBalance += parseFloat(
-              normalized.userTokenBorrowedAmount.inDollars
-            );
+            yourBalance += parseFloat(normalized.userTokenBorrowedAmount.inDollars);
 
 
             if (Number(normalized.userTokenBorrowedAmount.amount) > 0) {

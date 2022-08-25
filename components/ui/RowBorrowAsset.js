@@ -9,7 +9,7 @@ export default function RowBorrowAsset({ token, balance, Borrow, Details }) {
     return Number(amount).toFixed(2)
   }
 
-
+  
   let actualAvailable = "0.00";
   let actualAvailableInDollars = "0";
 
@@ -18,9 +18,7 @@ export default function RowBorrowAsset({ token, balance, Borrow, Details }) {
   const tokenEquivalent =
     0.999 * ( userTotalAmountAvailableForBorrowInDollars / parseFloat(token.oneTokenToDollar));
 
-  const tokenAvailableInContract = parseFloat(
-    token.availableAmountInContract.amount
-  );
+  const tokenAvailableInContract = parseFloat(token.availableAmountInContract.amount);
   const tokenAvailableInContractInDollars = convertToDollar(token, tokenAvailableInContract)
 
 

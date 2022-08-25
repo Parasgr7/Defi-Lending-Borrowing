@@ -12,7 +12,7 @@ contract LendingAndBorrowing is Ownable {
     mapping(address => mapping(address => uint256)) public tokensLentAmount;
     mapping(address => mapping(address => uint256)) public tokensBorrowedAmount;
 
-    // {noOfTokensLent: {userAddr: tokenAddres}}
+    // {noOfTokensLent[1,2,3,4]: {userAddr: tokenAddres}}
     mapping(uint256 => mapping(address => address)) public tokensLent;
     mapping(uint256 => mapping(address => address)) public tokensBorrowed;
 
@@ -201,7 +201,7 @@ contract LendingAndBorrowing is Ownable {
 
         tokensBorrowedAmount[tokenAddress][msg.sender] -= amount;
 
-        // Check If all the amount borrowed = 0;
+        // Checking if all total amount borrowed by a user = 0, then remove the user from borrowers list;
         if (getTotalAmountBorrowedInDollars(msg.sender) == 0) {
             borrowers[uint256(index)] = borrowers[borrowers.length - 1];
             borrowers.pop();
