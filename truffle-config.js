@@ -4,8 +4,8 @@ const path = require("path");
 const HDWalletProvider = require('./node_modules/@truffle/hdwallet-provider');
 require('./node_modules/dotenv').config();
 
-const MNEMONIC = process.env.REACT_APP_MNEMONIC;
-const INFURA_API_KEY = process.env.REACT_APP_INFURA_API_KEY;
+const MNEMONIC = process.env.MNEMONIC;
+const INFURA_API_KEY = process.env.INFURA_API_KEY;
 
 module.exports = {
   networks: {
@@ -15,15 +15,15 @@ module.exports = {
       network_id: "*", // Match any network id
       gasPrice: 25000000000
     },
-    ropsten: {
+    kovan: {
       provider: function(){
         return new HDWalletProvider(
           MNEMONIC,
-          `https://ropsten.infura.io/v3/${INFURA_API_KEY}`
+          `https://kovan.infura.io/v3/${INFURA_API_KEY}`
         )
       },
       gas_price: 25000000000,
-      network_id: 3
+      network_id: 42
     }
   },
   contracts_directory: './contracts/',

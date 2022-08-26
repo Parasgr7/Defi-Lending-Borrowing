@@ -13,7 +13,7 @@ export default function YourBorrows({ children, tokens, balance }) {
           <h3 className="font-bold text-lg">Your Borrows</h3>
           <div className="mt-4 flex">
               <div className="border rounded-md font-medium text-gray-800 p-1 px-2">
-                  Balance <span className="font-medium">${balance ? todp(balance, 3): "0" }</span>
+                  Balance: <span className="font-medium">${balance ? todp(balance, 2): "0" }</span>
               </div>
 
           </div>

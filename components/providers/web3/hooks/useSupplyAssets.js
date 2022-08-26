@@ -37,7 +37,7 @@ export const handler = (web3, contract) => () => {
     }
   );
 
-  const targetNetwork = NETWORKS["1337"];
+  const targetNetwork = NETWORKS["42"];
 
 
   return {

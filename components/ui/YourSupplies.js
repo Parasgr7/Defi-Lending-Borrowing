@@ -18,18 +18,6 @@ export default function YourSupply({ children, tokens, balance }) {
                   </span>
                 </div>
 
-                {/* <div className="border rounded-md p-1 px-2 ml-3">
-              APY <span className="font-medium">--</span>
-            </div> */}
-
-                <div className="border rounded-md p-1 px-2 ml-3">
-                  <span className="text-gray-800 font-medium">
-                    Collateral: $
-                  </span>
-                  <span className="font-medium">
-                    {balance ? todp(balance, 2) : "0"}
-                  </span>
-                </div>
               </div>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right"></div>

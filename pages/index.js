@@ -88,7 +88,6 @@ export default function Home() {
       ERC20.abi,
       LARToken.networks[NETWORK_ID].address
     );
-    console.log(larToken)
 
     try {
       await trackPromise(

@@ -1,11 +1,10 @@
 import LendingAndBorrowing from '../abis/LendingAndBorrowing.json'
-const NETWORK_ID = 5777;
+
 
 export const loadContract = async (contractName, web3) => {
-
+ const NETWORK_ID = await web3.eth.net.getId();
  const Artifact = LendingAndBorrowing;
  const lendingBorrowing = LendingAndBorrowing.networks[NETWORK_ID]
- // debugger
 
   let contract = null;
 
