@@ -40,6 +40,17 @@ export default function Home() {
   const { yourSupplies } = useYourSupplies();
   const { yourBorrows } = useYourBorrows();
 
+  const IMAGES = {
+    DAI:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSllrF9PNBf88kIx9USP5g73XDYjkMyRBaDig&usqp=CAU",
+    WETH: "https://staging.aave.com/icons/tokens/weth.svg",
+    LINK: "https://staging.aave.com/icons/tokens/link.svg",
+    FAU:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5qUPi3Ar2dQZ2m9K5opr_h9QaQz4_G5HVYA&usqp=CAU",
+    LAR:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqZs8PLHRLaGd4QfIvOYmCg30svx5dHp0y6A&usqp=CAU",
+  };
+
   const [selectedTokenToSupply, setSelectedTokenToSupply] = useState(null);
   const [selectedTokenToBorrow, setSelectedTokenToBorrow] = useState(null);
   const [selectedTokenToWithdraw, setSelectedTokenToWithdraw] = useState(null);
