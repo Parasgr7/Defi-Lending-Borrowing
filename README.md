@@ -33,7 +33,7 @@ It is deployed on the Ethereum Kovan Network.
 4. Next.js
 
 # What to Install
-2. Tailwind CSS: Install tailwind css [here](https://tailwindcss.com/docs/installation)
+1. Tailwind CSS: Install tailwind css [here](https://tailwindcss.com/docs/installation)
 
 # How to use
 1. To deploy solidity smart contract on Kovan Network
