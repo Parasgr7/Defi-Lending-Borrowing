@@ -1,4 +1,4 @@
-# defi-lending-and-borrowing
+# DeFi-Lending-and-Borrowing DApp
 DeFi Lending platform which lets you lend, borrow crypto assets and helps you earn some passive income as interest on your deposits.
 
 A full stack, fully-onchain DeFi app that enables users to supply tokens to the contract and are rewarded with some customly made ERC20 token (LAR) based on the amount of token they supply and also allows users to borrow tokens from it.
