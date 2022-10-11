@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DeFi-Lending-and-Borrowing DApp
+DeFi Lending platform which lets you lend, borrow crypto assets and helps you earn some passive income as interest on your deposits.
 
-## Getting Started
+A full stack, fully-onchain DeFi app that enables users to supply tokens to the contract and are rewarded with some customly made ERC20 token (LAR) based on the amount of token they supply and also allows users to borrow tokens from it.
 
-First, run the development server:
+It is deployed on the Ethereum Kovan Network.
 
-```bash
-npm run dev
-# or
-yarn dev
+# Features
+1. The contract supports 4 test tokens; DAI, LINK, WETH and FAU 😎
+2. Users can either supply some tokens to the pool just to provide liquidity or user can supply to the pool for usage as collateral.
+3. Users get rewarded with some LAR token when they supply to the pool. The LAR token rewarded to the user is calculated based on the token amount in dollars users supplied to the pool.
+4. For any user to borrow from the pool, the user has to stake some token as collateral. The collateral is influenced greatly by the LTV (Loan To Value) ratio of that particular token to stake. Note that the collateral must actually be greater in value than the token you want to borrow from the pool.
+5. The contract supports only stable APY rate for all tokens that can be borrowed. In other words, the amount of interest to pay at the end of the day is always constant.
+6. When user is ready to pay the debt, the interest along with the token borrowed is taken from the user. Interest is calculated based on that stable APY rate. 
+7. After repaying, user can withdraw the token staked as collateral from the pool.
+8. When a user withdraws from the pool, the contract also collects some LAR tokens rewarded to the user. The LAR token that will be collected from the user is equivalent in value to the amount of token user wants to withdraw.
+
+# Technologies
+1. **Open Zeppelin**: The contract uses IERC20 of OpenZeppelin create an instance of a token and also, it uses the Ownable contract of the OpenZepppelin to ensure security of the contract
+2. **Chainlink**: The contract uses the AggregatorV3Interface of chainlink to fetch real time price feeds.
+3. **Truffle**: Truffle is a development environment, asset pipeline, and testing framework for developing smart contracts.
+4. **Ganache**: Ganache is used as blockchain for local testing. 
+5. **Next JS**: Next JS is the front end framework used to ensure flexible user interaction.
+6. **Tailwind CSS**
+7. **Metamask**
+8. **web3.js**
+
+
+# Programming Languages
+1. Solidity
+2. Truffle
+3. Javascript
+4. Next.js
+
+# What to Install
+1. Tailwind CSS: Install tailwind css [here](https://tailwindcss.com/docs/installation)
+
+# How to use
+1. To deploy solidity smart contract on Kovan Network
 ```
+truffle deploy --network kovan
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+2. Start the Server
+```
+npm run dev
+```
+ # Developer
+ Let's Connect! 👋 👋 
+ ```
+ Paras Gaur - 
+    Email - parasgr484@gmail.com
+    Linkedin - https://www.linkedin.com/in/paras-gaur/
+    Website - https://paras-portfolio-flame.vercel.app/
+ ```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
