@@ -2080,10 +2080,16 @@
       "links": {},
       "address": "0xA15E8F68faE84688fDD77e02164DA43278b4F2f5",
       "transactionHash": "0xf50705ad42f55cc8ea0e5f621fd081ec1697ab7f35c02643cad49fc4da193fda"
+    },
+    "11155111": {
+      "events": {},
+      "links": {},
+      "address": "0x6846846fA4d3F8c88796348822F3Ab1e0BF27Fd7",
+      "transactionHash": "0x5dbb5e27515a4f52e6b3b590345a3f9a5fbf016399167135370cc0fcb7b40cf3"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-08-26T07:02:30.544Z",
+  "updatedAt": "2022-10-11T03:22:02.904Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

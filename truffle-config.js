@@ -15,15 +15,15 @@ module.exports = {
       network_id: "*", // Match any network id
       gasPrice: 25000000000
     },
-    kovan: {
+    sepolia: {
       provider: function(){
         return new HDWalletProvider(
           MNEMONIC,
-          `https://kovan.infura.io/v3/${INFURA_API_KEY}`
+          `https://sepolia.infura.io/v3/${INFURA_API_KEY}`
         )
       },
       gas_price: 25000000000,
-      network_id: 42
+      network_id: 11155111
     }
   },
   contracts_directory: './contracts/',

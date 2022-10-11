@@ -10843,10 +10843,67 @@
       "links": {},
       "address": "0x9165d89342b3159BeAD3aC4cEbab74b17646b8aD",
       "transactionHash": "0xa67b30132bc620958ef61dee3103276ee728527d35f78f300601026d4b2f5169"
+    },
+    "11155111": {
+      "events": {
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x6D3DDDA1A656474309cde816060D1310A6a6b4D0",
+      "transactionHash": "0xa8b473f0944e3d3b5bc5c3073de8d42b57f2dee8b4c38704b53921f378a1fa02"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-08-26T07:02:30.481Z",
+  "updatedAt": "2022-10-11T03:22:02.838Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
